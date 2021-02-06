@@ -1,7 +1,12 @@
 /* Nerdy secret: You can use "less" below! Don't tell anybody... */
 
+body {
+  font-family: Ubuntu, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
 .github-profile {
   margin: 1rem;
+  list-style: none;
   img {
     width: 75px;
   }
@@ -11,6 +16,13 @@
     .name {
       font-size: 1.25rem;
       font-weight: bold;
+    }
+    a {
+      font-size: 1rem;
+      color: green;
+      &:hover {
+        color: darkslategray;
+      }
     }
   }
 }
