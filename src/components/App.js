@@ -7,19 +7,20 @@ function App(props) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://api.github.com/users")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setUsers(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    fetchData();
   }, []);
+
+  async function fetchData() {
+    try {
+      setIsLoaded(true);
+      const response = await fetch("https://api.github.com/users");
+      const json = await response.json();
+      setUsers(json);
+    } catch (error) {
+      setIsLoaded(true);
+      setError(error);
+    }
+  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
