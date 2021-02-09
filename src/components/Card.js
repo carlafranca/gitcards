@@ -6,7 +6,11 @@ export default function Card({ user }) {
       <img src={user.avatar_url} alt="" />
       <div className="info">
         <div className="name">{user.login}</div>
-        <a href={user.url} rel="noreferrer" target="_blank">
+        <a
+          href={`https://github.com/${user.login}`}
+          rel="noreferrer"
+          target="_blank"
+        >
           View {user.login} github
         </a>
       </div>

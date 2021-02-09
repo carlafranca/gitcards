@@ -5,25 +5,26 @@ function App(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [users, setUsers] = useState([]);
+  // , {
+  //   headers: { Authorization: "Basic carlafranca : N!kol#16" },
+  // }
 
   useEffect(() => {
-    fetchData();
+    fetch("https://api.github.com/users")
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.message) throw result;
+        setIsLoaded(true);
+        setUsers(result);
+      })
+      .catch((error) => {
+        setIsLoaded(true);
+        setError(error.message);
+      });
   }, []);
 
-  async function fetchData() {
-    try {
-      setIsLoaded(true);
-      const response = await fetch("https://api.github.com/users");
-      const json = await response.json();
-      setUsers(json);
-    } catch (error) {
-      setIsLoaded(true);
-      setError(error);
-    }
-  }
-
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   } else if (!isLoaded) {
     return <div>Loading ...</div>;
   } else {
